@@ -14,12 +14,17 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
-
+      <header className="h-16 px-8 bg-blue-600 text-white w-full sticky top-0 flex items-center justify-between">
+	      <span>HEADER</span>
+        <div className="h-10 w-10 bg-white rounded-full flex items-center justify-center text-blue-600">
+          <span className="material-icons">flutter_dash</span>
+        </div>
+      </header>
       <main className="py-20 flex flex-col flex-1 justify-center items-center">
-        <h1 className="m-0 leading-snug text-6xl text-center">
+        <h1 className="m-10 leading-snug text-9xl text-center">
           Welcome to{" "}
           <a
-            className="text-blue-600 no-underline hover:underline focus:underline"
+            className="text-green-600 no-underline hover:underline focus:underline"
             href="https://nextjs.org"
           >
             Next.js!
