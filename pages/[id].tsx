@@ -7,7 +7,7 @@ export default function ProductDetail() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [product, setProduct] = useState<IProduct[]>([]);
+  const [product, setProduct] = useState<IProduct | undefined>();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -17,18 +17,20 @@ export default function ProductDetail() {
     fetchProduct();
   }, []);
 
-  // const product: IProduct = {
-  //   id: Number(id),
-  //   name: `Product ${id}`,
-  //   cost: 10,
-  //   category: 1,
-  //   image: 0,
-  // };
-
-
-  return (
-    <main className="px-10 py-6 flex flex-col flex-1">
-        {/* <Product {...product} /> */}
-    </main>
-  );
+  if (product == undefined  || product == null) {
+    return (
+      <main className="px-10 py-6 flex flex-col flex-1">
+        <h1>This product could not be found</h1>
+      </main>
+    );
+  }
+  else 
+  {
+    return (
+      <main className="px-10 py-6 flex flex-col flex-1">
+        <Product {...product} />
+      </main>
+    );
+  }
+  
 }
