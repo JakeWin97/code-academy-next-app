@@ -23,7 +23,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
       
       <main className="py-5 flex flex-col flex-1 justify-center items-center">
-        <h1 className="m-10 leading-snug text-9xl text-center">
+        <h1 className="m-10 leading-snug text-8xl text-center font-sans">
           Enjoy our range of products!
         </h1>
 

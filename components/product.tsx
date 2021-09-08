@@ -5,7 +5,7 @@ import Link from "next/link";
 const Product:React.FC <IProduct> = ({ name, category, cost, image, id }) => {
 	return (
         <Link href={`/${id}`}>
-		<a className="z-0 m-3 w-96 text-left no-underline border border-solid border-gray-200 rounded-lg hover:opacity-70 hover:shadow-md focus:shadow-md focus:outline-none">
+		<a className="z-0 m-3 w-96 text-left no-underline border border-solid border-gray-200 rounded-lg hover:opacity-70 transform transition duration-700 ease-in-out hover:-translate-y-2 hover:shadow-md focus:shadow-md focus:outline-none">
             <div
               id="image"
               className={classNames(
