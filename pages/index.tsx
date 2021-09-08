@@ -20,25 +20,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
       
-      <main className="py-20 flex flex-col flex-1 justify-center items-center">
+      <main className="py-5 flex flex-col flex-1 justify-center items-center">
         <h1 className="m-10 leading-snug text-9xl text-center">
-          Enjoy our range of products!{" "}
-          {/* <a
-            className="text-green-600 no-underline hover:underline focus:underline"
-            href="https://nextjs.org"
-          >
-            Next.js!
-          </a> */}
+          Enjoy our range of products!
         </h1>
-
-        {/* <p className="leading-normal text-2xl text-center">
-          Get started by editing{" "}
-          <code className="bg-gray-100 rounded-md p-3 text-lg font-mono">
-            pages/index.js
-          </code>
-        </p> */}
 
         <div className="mt-10 flex flex-wrap flex-col sm:flex-row w-full justify-center items-center">
         {products.map((p) => (
