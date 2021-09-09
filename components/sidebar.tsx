@@ -1,7 +1,7 @@
 const Sidebar:React.FC = () => {
     return (
     <div className="flex bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500" id="sidebar">
-        <ul className="pb-2 bg-black w-32 items-center leading-10 text-white font-sans">
+        <ul className="pb-2 bg-blue-500 w-32 items-center leading-10 text-white font-sans rounded-r-lg">
             <li>Show All</li>
             <li>Category 1</li>
             <li>Category 2</li>

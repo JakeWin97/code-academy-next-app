@@ -17,6 +17,7 @@ export default function Home() {
   }, []);
 
   return (
+    
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
       
       <main className="py-5 flex flex-col flex-1 justify-center items-center">
@@ -29,21 +30,7 @@ export default function Home() {
           <Product key={p.id} {...p} />
         ))}
         </div>
-      </main>
-
-      <footer className="w-full h-24 flex justify-center items-center border-t border-solid border-gray-200">
-        <a
-          className="flex flex-1 justify-center items-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className="h-4 ml-2">
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      </main>   
     </div>
   );
 }

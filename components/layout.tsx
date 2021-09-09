@@ -1,3 +1,4 @@
+import Footer from "./footer";
 import Header from "./header";
 import Sidebar from "./sidebar";
 
@@ -11,6 +12,7 @@ const Layout: React.FC = ({ children }) => {
           {children}
         </div>
       </div>
+      <Footer/>
       
     </>
   );
