@@ -1,12 +1,9 @@
 import classNames from "classnames";
 import Head from "next/head";
 import Image from "next/image";
-import Card from "../components/card";
 import Product from "../components/product";
 import { useEffect, useState } from "react";
 import { IProduct } from "../models/product";
-
-
 
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
