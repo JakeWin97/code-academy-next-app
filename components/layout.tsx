@@ -5,9 +5,9 @@ const Layout: React.FC = ({ children }) => {
   return (
     <>
       <Header />
-      <div className="flex">
+      <div className="flex min-h-screen">
         <Sidebar/>
-        <div>
+        <div className="flex flex-grow">
           {children}
         </div>
       </div>

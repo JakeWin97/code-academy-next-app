@@ -1,0 +1,8 @@
+li {
+    text-align: center;
+}
+li:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
