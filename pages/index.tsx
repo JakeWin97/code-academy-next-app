@@ -1,12 +1,13 @@
-import classNames from "classnames";
-import Head from "next/head";
-import Image from "next/image";
 import Product from "../components/product";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { IProduct } from "../models/product";
+import Pagination from "../components/pagination";
+
 
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10); // Limit to 10 products per page.
   
   useEffect(() => {
     const fetchProducts = async () => {
@@ -15,6 +16,10 @@ export default function Home() {
     };
     fetchProducts();
   }, []);
+
+  const indexLastProduct = currentPage * productsPerPage;
+  const indexFirstProduct = indexLastProduct - productsPerPage;
+  const currentProduct = products.slice(indexFirstProduct, indexLastProduct);
 
   return (
     
@@ -26,10 +31,12 @@ export default function Home() {
         </h1>
 
         <div className="mt-10 flex flex-wrap flex-col sm:flex-row w-full justify-center items-center">
-        {products.map((p) => (
+        {currentProduct.map((p) => (  // Map the current slice
           <Product key={p.id} {...p} />
         ))}
+        
         </div>
+        <Pagination productsPerPage={productsPerPage} totalProducts={products.length}/>
       </main>   
     </div>
   );
