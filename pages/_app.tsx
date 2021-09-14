@@ -2,6 +2,7 @@ import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import Layout from "../components/layout";
+import "../style/styles.css"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

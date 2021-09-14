@@ -5,7 +5,7 @@ import Link from "next/link";
 const Product:React.FC <IProduct> = ({ name, category, cost, image, id }) => {
 	return (
         <Link href={`/${id}`}>
-		<a className="m-3 w-96 text-left no-underline border border-solid border-gray-200 rounded-lg hover:shadow-md focus:shadow-md focus:outline-none">
+		<a className="z-0 m-3 w-96 text-left no-underline border border-solid border-gray-200 rounded-lg hover:opacity-70 transform transition duration-700 ease-in-out hover:-translate-y-2 hover:shadow-md focus:shadow-md focus:outline-none">
             <div
               id="image"
               className={classNames(
@@ -20,10 +20,10 @@ const Product:React.FC <IProduct> = ({ name, category, cost, image, id }) => {
             >
               <span className="material-icons text-6xl text-white">image</span>
             </div>
-            <div className="p-5">
-              <h2 className="m0 mb-4 text-2xl font-medium">{name}</h2>
-              <p className="m-0 text-xl">Category: {category}</p>
-              <p className="m-0 text-xl">£{cost}</p>
+            <div className="p-5 bg-white font-sans">
+              <h2 className="m0 mb-0 text-3xl font-medium">{name}</h2>
+              <p className="m-0 mb-4 text-medium">Category: {category}</p>
+              <p className="m-0 text-3xl text-green-600 font-medium text-right">£{cost}</p>
             </div>
           </a>
     </Link>

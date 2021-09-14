@@ -1,15 +1,13 @@
-import classNames from "classnames";
-import Head from "next/head";
-import Image from "next/image";
-import Card from "../components/card";
 import Product from "../components/product";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { IProduct } from "../models/product";
-
+import Pagination from "../components/pagination";
 
 
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10); // Limit to 10 products per page.
   
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,47 +17,27 @@ export default function Home() {
     fetchProducts();
   }, []);
 
+  const indexLastProduct = currentPage * productsPerPage;
+  const indexFirstProduct = indexLastProduct - productsPerPage;
+  const currentProduct = products.slice(indexFirstProduct, indexLastProduct);
+
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center">
+    
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
       
-      <main className="py-20 flex flex-col flex-1 justify-center items-center">
-        <h1 className="m-10 leading-snug text-9xl text-center">
-          Welcome to{" "}
-          <a
-            className="text-green-600 no-underline hover:underline focus:underline"
-            href="https://nextjs.org"
-          >
-            Next.js!
-          </a>
+      <main className="py-5 flex flex-col flex-1 justify-center items-center">
+        <h1 className="m-10 leading-snug text-8xl text-center font-sans">
+          Enjoy our range of products!
         </h1>
 
-        <p className="leading-normal text-2xl text-center">
-          Get started by editing{" "}
-          <code className="bg-gray-100 rounded-md p-3 text-lg font-mono">
-            pages/index.js
-          </code>
-        </p>
-
         <div className="mt-10 flex flex-wrap flex-col sm:flex-row w-full justify-center items-center">
-        {products.map((p) => (
+        {currentProduct.map((p) => (  // Map the current slice
           <Product key={p.id} {...p} />
         ))}
+        
         </div>
-      </main>
-
-      <footer className="w-full h-24 flex justify-center items-center border-t border-solid border-gray-200">
-        <a
-          className="flex flex-1 justify-center items-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className="h-4 ml-2">
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+        <Pagination productsPerPage={productsPerPage} totalProducts={products.length}/>
+      </main>   
     </div>
   );
 }
