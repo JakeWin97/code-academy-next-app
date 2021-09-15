@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const Header:React.FC = () => {
     function hide() {
         const sidebar = document.getElementById('sidebar');
@@ -9,8 +11,7 @@ const Header:React.FC = () => {
             }
             else {
                 sidebar.style.display = 'block';
-            }
-            
+            }   
         }  
     }
 
@@ -19,7 +20,7 @@ const Header:React.FC = () => {
         <div className="h-10 w-10 bg-gray-300 flex items-center justify-center text-blue-500 cursor-pointer" id="side_btn" onClick={hide}>
             <button className="hover:opacity-70 material-icons" title="Menu">menu</button>
         </div>
-        <span>GROCERIES 4U</span>
+        <Link href="/"><span className="hover:text-red-500 cursor-pointer">GROCERIES 4U</span></Link>
         <div className="h-12 w-12 bg-gray-300 flex items-center justify-center text-blue-500">
             <span className="material-icons">shopping_cart</span>
         </div>
