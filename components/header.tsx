@@ -6,11 +6,11 @@ const Header:React.FC = () => {
 
         if (sidebar!=null && sidebar!= undefined)
         {
-            if (sidebar.style.display != 'none'){
-                sidebar.style.display = 'none';
+            if (sidebar.style.display == 'none' || sidebar.style.display == ''){  //' ' for first time launch
+                sidebar.style.display = 'block';
             }
             else {
-                sidebar.style.display = 'block';
+                sidebar.style.display = 'none';
             }   
         }  
     }
