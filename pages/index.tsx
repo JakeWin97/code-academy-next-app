@@ -7,7 +7,7 @@ import Pagination from "../components/pagination";
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(5); // Limit to 10 products per page.
+  const [productsPerPage] = useState(12); // Limit to 10 products per page.
   
   useEffect(() => {
     const fetchProducts = async () => {
