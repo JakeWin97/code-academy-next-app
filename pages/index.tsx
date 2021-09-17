@@ -23,13 +23,7 @@ export default function Home() {
 
   const pageNums = [];
 
-  for(let i = 1; i <= Math.ceil(products.length/ productsPerPage); i++) {
-        pageNums.push(i) // Ensure the number of page numbers are correct based on the slicing.
-  }
-
-  function setPage(pageNumber: number) {
-      setCurrentPage(pageNumber);
-  }
+  const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber);
 
   return (
     
@@ -44,20 +38,9 @@ export default function Home() {
         {currentProduct.map((p) => (  // Map the current slice
           <Product key={p.product_id} {...p} />
         ))}
-        
         </div>
 
-        <nav className="mt-8 mb-8 inline">
-            <ul className="pagination inline pt-8">
-                {pageNums.map(num => (
-                    <li key={num} className="page-num inline pr-5 pl-5 pt-4 pb-4 bg-white border" onClick={() => setPage(num)}>
-                        <a className="page-link border-black">{num}</a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-
-        {/* <Pagination productsPerPage={productsPerPage} totalProducts={products.length}/> */}
+        <Pagination productsPerPage={productsPerPage} totalProducts={products.length} paginate={paginate}/>
       </main>   
     </div>
   );
