@@ -7,7 +7,7 @@ import Pagination from "../components/pagination";
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(10); // Limit to 10 products per page.
+  const [productsPerPage] = useState(50); // Limit to 10 products per page.
   
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,7 +32,7 @@ export default function Home() {
 
         <div className="mt-10 flex flex-wrap flex-col sm:flex-row w-full justify-center items-center">
         {currentProduct.map((p) => (  // Map the current slice
-          <Product key={p.id} {...p} />
+          <Product key={p.product_id} {...p} />
         ))}
         
         </div>

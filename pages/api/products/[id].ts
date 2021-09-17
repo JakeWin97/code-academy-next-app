@@ -1,9 +1,13 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
-import { products } from ".";
+import { getDB } from "../../../db/init-db";
+import { IProduct } from "../../../models/product";
 
-const product: NextApiHandler = (req, res) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<IProduct[]>
+) {
   const { id } = req.query;
-  res.status(200).json(products[Number(id)-1]);
+  const { db } = getDB();
+  const product = await db.query(`SELECT * FROM CodeAcademy.product WHERE product_id=${id};`);
+  res.status(200).json(product);
 }
-
-export default product;
