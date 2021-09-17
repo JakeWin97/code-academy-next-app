@@ -7,7 +7,7 @@ import Pagination from "../components/pagination";
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(50); // Limit to 10 products per page.
+  const [productsPerPage] = useState(12); // Limit to 12 products per page.
   
   useEffect(() => {
     const fetchProducts = async () => {
@@ -20,6 +20,16 @@ export default function Home() {
   const indexLastProduct = currentPage * productsPerPage;
   const indexFirstProduct = indexLastProduct - productsPerPage;
   const currentProduct = products.slice(indexFirstProduct, indexLastProduct);
+
+  const pageNums = [];
+
+  for(let i = 1; i <= Math.ceil(products.length/ productsPerPage); i++) {
+        pageNums.push(i) // Ensure the number of page numbers are correct based on the slicing.
+  }
+
+  function setPage(pageNumber: number) {
+      setCurrentPage(pageNumber);
+  }
 
   return (
     
@@ -36,7 +46,18 @@ export default function Home() {
         ))}
         
         </div>
-        <Pagination productsPerPage={productsPerPage} totalProducts={products.length}/>
+
+        <nav className="mt-8 mb-8 inline">
+            <ul className="pagination inline pt-8">
+                {pageNums.map(num => (
+                    <li key={num} className="page-num inline pr-5 pl-5 pt-4 pb-4 bg-white border" onClick={() => setPage(num)}>
+                        <a className="page-link border-black">{num}</a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+
+        {/* <Pagination productsPerPage={productsPerPage} totalProducts={products.length}/> */}
       </main>   
     </div>
   );
