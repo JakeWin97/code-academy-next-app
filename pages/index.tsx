@@ -21,8 +21,10 @@ export default function Home() {
   const indexFirstProduct = indexLastProduct - productsPerPage;
   const currentProduct = products.slice(indexFirstProduct, indexLastProduct);
 
-  const paginate = (pageNumber: SetStateAction<number>) => setCurrentPage(pageNumber);
-
+  const paginate = (pageNumber: SetStateAction<number>) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'auto' }); // jump to top no scroll animation
+  }
   return (
     
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
