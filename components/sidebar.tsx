@@ -5,7 +5,7 @@ const Sidebar:React.FC = () => {
     <div className="flex h-full hidden" id="sidebar">
         <ul className="pb-2 bg-blue-500 w-32 items-center leading-10 text-white font-sans rounded-r-lg h-full">
             <Link href="/about"><li>About Us</li></Link>
-            <li>Contact Us</li>
+            <Link href="/contact"><li>Contact Us</li></Link>
         </ul>
     </div>
     );
