@@ -6,9 +6,10 @@ import PageTitle from "../components/page_title";
 
 
 export default function Home() {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  var [products, setProducts] = useState<IProduct[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setPerPage] = useState(12); // Default value
+  const [category, setCategory] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,9 +28,34 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'auto' }); // jump to top no scroll animation
   }
 
-  async function sortProducts(method: string) {
-    const res = await (await fetch(`api/products/${method}`)).json();
-    setProducts(res);
+  async function sortProducts(order: string, category: string) {
+    const res = await (await fetch(`api/products/category/${category}`)).json();
+    if (order == "ASC"){
+      res.sort((a: { selling_price: number; }, b: { selling_price: number; }) => a.selling_price - b.selling_price);
+    }
+
+    else if (order == "DESC") {
+      res.sort((a: { selling_price: number; }, b: { selling_price: number; }) => b.selling_price - a.selling_price);
+    }
+
+    setProducts(res)
+    
+  }
+    
+  async function getCategory(catNum: number) {
+    var dropdown = (document.getElementById('sortby')) as HTMLSelectElement;
+    dropdown.selectedIndex = 0;
+    
+    if (catNum == 0){
+      const res = await (await fetch(`api/products`)).json();
+      setProducts(res);
+      setCategory(catNum);
+    }
+    else {
+      const res = await (await fetch(`api/products/category/${catNum}`)).json();
+      setProducts(res);
+      setCategory(catNum)
+    }
   }
 
   return (
@@ -40,12 +66,24 @@ export default function Home() {
         <div className="w-full items-center justify-center flex">
           <nav>
             <ul className="flex">
+            <li>
+                <label className="mr-1 font-sans">Category: </label>
+                <select id="cat" onChange={e => getCategory(Number(e.target.value))} className="font-sans mr-8">
+                  <option value="0">Show All</option>
+                  <option value="1">Fruit and Veg</option>
+                  <option value="2">Dairy</option>
+                  <option value="3">Meat and Poultry</option>
+                  <option value="4">Breakfast</option>
+                  <option value="5">Bathroom</option>
+                  <option value="6">Frozen</option>
+                </select>
+              </li>
               <li>
                 <label className="mr-1 font-sans">Sort by: </label>
-                <select onChange={e => sortProducts(e.target.value)} className="font-sans mr-8">
+                <select id="sortby" onChange={e => sortProducts(e.target.value, category.toString())} className="font-sans mr-8">
                   <option value="">Default</option>
-                  <option value="sort_asc">Price Ascending</option>
-                  <option value="sort_desc">Price Descending</option>
+                  <option value="ASC">Price Ascending</option>
+                  <option value="DESC">Price Descending</option>
                 </select>
               </li>
               <li>
