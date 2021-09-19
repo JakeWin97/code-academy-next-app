@@ -25,6 +25,12 @@ export default function Home() {
     setCurrentPage(pageNumber);
     window.scrollTo({ top: 0, behavior: 'auto' }); // jump to top no scroll animation
   }
+
+  async function sortProducts(method: string) {
+    const res = await (await fetch(`api/products/${method}`)).json();
+    setProducts(res);
+  }
+
   return (
     
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
@@ -36,6 +42,14 @@ export default function Home() {
         <div className="w-full items-center justify-center flex">
           <nav>
             <ul className="flex">
+            <li>
+                <label className="mr-1 font-sans">Sort by: </label>
+                <select onChange={e=>sortProducts(e.target.value)} className="font-sans mr-8">
+                  <option value="">Default</option>
+                  <option value="sort_asc">Price Ascending</option>
+                  <option value="sort_desc">Price Descending</option>
+                </select>
+              </li>
               <li>
                 <label className="mr-1 font-sans">Products per page: </label>
                 <select onChange={e=>setPerPage(Number(e.target.value))} className="font-sans">
