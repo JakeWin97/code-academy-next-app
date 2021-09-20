@@ -15,8 +15,8 @@ const OurProducts = () => {
             <div className="p-2">
               <h1 className="pb-8 text-6xl flex flex-wrap font-semibold font-sans">Quality products, quality prices </h1>
               <h1>At Groceries 4U, we offer an extensive range of products including our exciting own brands that</h1>
-              <h1>you won't find anywhere else. Alongside this we stock many of the UK's most popular brands.</h1>
-              <h1>Whatever you need, we've got it covered. Find out more below.</h1>
+              <h1>you won&apos;t find anywhere else. Alongside this we stock many of the UK&apos;s most popular brands.</h1>
+              <h1>Whatever you need, we&apos;ve got it covered. Find out more below.</h1>
             </div>
           </div>
         </div>

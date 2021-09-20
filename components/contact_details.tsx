@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const ContactDetails: React.FC = () => {
     return (
         <div className="text-3xl font-sans w-96 text-center font-semibold">
@@ -12,10 +14,10 @@ const ContactDetails: React.FC = () => {
             <h1 className="mb-9">info@groceries4u.co.uk</h1>
 
             <div className="flex justify-center">
-                <img className="mr-3 cursor-pointer hover:opacity-80" src="/facebook.png" alt="" width={64} height={64} />
-                <img className="mr-3 cursor-pointer hover:opacity-80" src="/linkedin.png" alt="" width={64} height={64} />
-                <img className="mr-3 cursor-pointer hover:opacity-80" src="/twitter.png" alt="" width={64} height={64} />
-                <img className="mr-3 cursor-pointer hover:opacity-80" src="/insta.png" alt="" width={64} height={64} />
+                <Image className="mr-3 cursor-pointer hover:opacity-80" src="/facebook.png" alt="" width={64} height={64} />
+                <Image className="mr-3 cursor-pointer hover:opacity-80" src="/linkedin.png" alt="" width={64} height={64} />
+                <Image className="mr-3 cursor-pointer hover:opacity-80" src="/twitter.png" alt="" width={64} height={64} />
+                <Image className="mr-3 cursor-pointer hover:opacity-80" src="/insta.png" alt="" width={64} height={64} />
             </div>
         </div>
     )
