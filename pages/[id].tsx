@@ -1,7 +1,8 @@
 import { useRouter } from "next/dist/client/router";
-import { useEffect, useState } from "react";
-import Product from "../components/product";
+import React, { useEffect, useState } from "react";
+import ProdDetail from "../components/prod_detail";
 import { IProduct } from "../models/product";
+import Link from "next/link";
 
 export default function ProductDetail() {
   const router = useRouter();
@@ -17,22 +18,23 @@ export default function ProductDetail() {
     fetchProduct();
   }, []);
 
-  if (product == undefined  || product == null) {
+  if (product == undefined || product == null) {
     return (
       <main className="px-10 py-6 flex flex-col flex-1 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
         <h1>This product could not be found</h1>
       </main>
     );
   }
-  else 
-  {
+  else {
     return (
+
       <main className="px-10 py-6 flex flex-col flex-1 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
-        {product.map((p) => (  
-          <Product key={p.product_id} {...p} />
+        <Link href="/shop"><button className="text-xl rounded-3xl bg-green-400 p-3 font-semibold w-36 shadow-2xl hover:bg-black hover:text-white">Back</button></Link>
+        {product.map((p) => (
+          <ProdDetail key={p.product_id} {...p} />
         ))}
       </main>
     );
   }
-  
+
 }
