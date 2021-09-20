@@ -34,3 +34,7 @@ textarea {
     border-color: black;
     border-radius: 1rem;
 }
+
+.home {
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('/background.jpg');
+}
