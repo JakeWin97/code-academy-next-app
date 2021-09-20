@@ -64,11 +64,11 @@ export default function Home() {
       <PageTitle pageName="Shop Now" message="Enjoy our range of products"></PageTitle>
       <main className="py-5 flex flex-col flex-1 justify-center items-center">
         <div className="w-full items-center justify-center flex">
-          <nav>
+          <nav className="bg-green-400 pt-3 pb-3 pl-6 pr-6 rounded-2xl">
             <ul className="flex">
             <li>
-                <label className="mr-1 font-sans">Category: </label>
-                <select id="cat" onChange={e => getCategory(Number(e.target.value))} className="font-sans mr-8">
+                <label className="mr-1 font-sans font-medium">Category: </label>
+                <select id="cat" onChange={e => getCategory(Number(e.target.value))} className="font-sans mr-8 rounded-2xl bg-gray-200">
                   <option value="0">Show All</option>
                   <option value="1">Fruit and Veg</option>
                   <option value="2">Dairy</option>
@@ -79,16 +79,16 @@ export default function Home() {
                 </select>
               </li>
               <li>
-                <label className="mr-1 font-sans">Sort by: </label>
-                <select id="sortby" onChange={e => sortProducts(e.target.value, category.toString())} className="font-sans mr-8">
+                <label className="mr-1 font-sans font-medium">Sort by: </label>
+                <select id="sortby" onChange={e => sortProducts(e.target.value, category.toString())} className="font-sans mr-8 rounded-2xl bg-gray-200">
                   <option value="">Default</option>
                   <option value="ASC">Price Ascending</option>
                   <option value="DESC">Price Descending</option>
                 </select>
               </li>
               <li>
-                <label className="mr-1 font-sans">Products per page: </label>
-                <select onChange={e => setPerPage(Number(e.target.value))} className="font-sans">
+                <label className="mr-1 font-sans font-medium">Products per page: </label>
+                <select onChange={e => setPerPage(Number(e.target.value))} className="font-sans rounded-2xl bg-gray-200">
                   <option value="12">12</option>
                   <option value="24">24</option>
                   <option value="36">36</option>
