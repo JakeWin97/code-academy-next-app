@@ -3,13 +3,17 @@ import { SetStateAction, useEffect, useState } from "react";
 import { IProduct } from "../models/product";
 import Pagination from "../components/pagination";
 import PageTitle from "../components/page_title";
+import BasketItem from "../components/basket_item";
 
+function intToFloat(num: number, decPlaces: number) { return num.toFixed(decPlaces); } // Add trailing 0s.
 
 export default function Shop() {
   var [products, setProducts] = useState<IProduct[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setPerPage] = useState(12); // Default value
   const [category, setCategory] = useState(0);
+  const [basket, setBasket] = useState<IProduct[]>([]);
+  var [basketValue, setValue] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,6 +32,11 @@ export default function Shop() {
     window.scrollTo({ top: 0, behavior: 'auto' }); // jump to top no scroll animation
   }
 
+  const setbasket = (item: IProduct) => {
+    setBasket([...basket, item]);
+    setValue(basketValue += item.selling_price)
+  }
+
   async function sortProducts(order: string, category: string) {
     const res = await (await fetch(`api/products/category/${category}`)).json();
     if (order == "ASC") {
@@ -39,7 +48,6 @@ export default function Shop() {
     }
 
     setProducts(res)
-
   }
 
   async function getCategory(catNum: number) {
@@ -61,6 +69,18 @@ export default function Shop() {
   return (
 
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-200 via-gray-300 to-gray-500">
+      <div id="basket_wrapper" className="mt-8 bg-gray-200 hidden">
+        <div className="w-96 text-center bg-blue-500 p-3 rounded-3xl border-2 border-white">
+          <h1 className="text-2xl text-white mb-2 font-bold">Basket</h1>
+          {basket.map((p) => (
+            <BasketItem key={p.product_id}{...p} item={p} />
+          ))}
+          <h1 className="mt-2 text-2xl text-white font-bold">Total value: £{intToFloat(basketValue, 2)} </h1>
+
+        </div>
+
+      </div>
+
       <PageTitle pageName="Shop Now" message="Enjoy our range of products"></PageTitle>
       <main className="py-5 flex flex-col flex-1 justify-center items-center">
         <div className="w-full items-center justify-center flex">
@@ -102,7 +122,7 @@ export default function Shop() {
 
         <div className="mt-10 flex flex-wrap flex-col sm:flex-row w-full justify-center items-center">
           {currentProduct.map((p) => (  // Map the current slice
-            <Product key={p.product_id} {...p} />
+            <Product key={p.product_id}{...p} product_id={p.product_id} product_name={p.product_name} selling_price={p.selling_price} category={p.category} img={p.img} setbasket={setbasket} />
           ))}
         </div>
 
