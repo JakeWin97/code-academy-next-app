@@ -4,4 +4,5 @@ export interface IProduct {
 	selling_price: number,
 	category: number,
 	img: string;
+	setbasket: (item: IProduct) => void
 }

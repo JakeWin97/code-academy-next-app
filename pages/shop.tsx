@@ -10,6 +10,7 @@ export default function Shop() {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setPerPage] = useState(12); // Default value
   const [category, setCategory] = useState(0);
+  const [basket, setBasket] = useState<IProduct[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,6 +29,10 @@ export default function Shop() {
     window.scrollTo({ top: 0, behavior: 'auto' }); // jump to top no scroll animation
   }
 
+  const setbasket = (item: IProduct) => {
+    setBasket([...basket, item]);
+  }
+
   async function sortProducts(order: string, category: string) {
     const res = await (await fetch(`api/products/category/${category}`)).json();
     if (order == "ASC") {
@@ -39,7 +44,6 @@ export default function Shop() {
     }
 
     setProducts(res)
-
   }
 
   async function getCategory(catNum: number) {
@@ -102,7 +106,7 @@ export default function Shop() {
 
         <div className="mt-10 flex flex-wrap flex-col sm:flex-row w-full justify-center items-center">
           {currentProduct.map((p) => (  // Map the current slice
-            <Product key={p.product_id} {...p} />
+            <Product key={p.product_id}{...p} product_id={p.product_id} product_name={p.product_name} selling_price={p.selling_price} category={p.category} img={p.img} setbasket={setbasket} />
           ))}
         </div>
 
