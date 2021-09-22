@@ -73,7 +73,7 @@ export default function Shop() {
         <div className="w-96 text-center bg-blue-500 p-3 rounded-3xl border-2 border-white">
           <h1 className="text-2xl text-white mb-2 font-bold">Basket</h1>
           {basket.map((p) => (
-            <BasketItem item={p} />
+            <BasketItem key={p.product_id}{...p} item={p} />
           ))}
           <h1 className="mt-2 text-2xl text-white font-bold">Total value: £{intToFloat(basketValue, 2)} </h1>
 
